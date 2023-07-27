@@ -6,6 +6,7 @@ import {
   IuserContext,
 } from "../interfaces/user.interfaces";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { api } from "../services/api";
@@ -35,9 +36,13 @@ const UserProvider = ({ children }: TdefaultProps) => {
     try {
       const response = await api.post("/login", formData);
 
+      const { token } = response.data;
+
       setUser(response.data);
 
-      localStorage.setItem("@TOKEN", response.data.token);
+      localStorage.setItem("@TOKEN", token);
+
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       navigate("/dashboard");
 
@@ -47,8 +52,28 @@ const UserProvider = ({ children }: TdefaultProps) => {
     }
   };
 
+  const deleteUser = async () => {
+    try {
+      const id = 1;
+      await api.delete(`users/${id}`);
+
+      localStorage.removeItem("@TOKEN");
+
+      navigate("/");
+    } catch (error) {
+      toast.error("Please check your information and try again");
+    }
+  };
+
+  const userLogout = () => {
+    setUser(null);
+    localStorage.removeItem("@TOKEN");
+  };
+
   return (
-    <UserContext.Provider value={{ signup, user, seasson }}>
+    <UserContext.Provider
+      value={{ signup, user, seasson, userLogout, deleteUser }}
+    >
       {children}
       <ToastContainer
         position="top-right"

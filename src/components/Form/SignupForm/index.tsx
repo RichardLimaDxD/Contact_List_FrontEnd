@@ -3,6 +3,8 @@ import { Iusers } from "../../../interfaces/user.interfaces";
 import { useAuth } from "../../../hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createUserSchema } from "../../../schemas/user.schema";
+import { Link } from "react-router-dom";
+import styles from "./styles.module.scss";
 
 const SignupForm = () => {
   const {
@@ -18,13 +20,16 @@ const SignupForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
-      <h2>WELCOME</h2>
+    <form
+      className={styles.container__signupForm}
+      onSubmit={handleSubmit(submit)}
+    >
+      <h2>CREATE YOUR ACCOUNT</h2>
       <label htmlFor="fullname">Full name:</label>
       <input
         type="text"
         id="fullname"
-        placeholder="Your full name"
+        placeholder="Your full name..."
         {...register("fullname")}
       />
       {errors.fullname?.message && <p> * {errors.fullname.message}</p>}
@@ -42,7 +47,7 @@ const SignupForm = () => {
       <input
         type="text"
         id="telephone"
-        placeholder="your telephone..."
+        placeholder="Your telephone..."
         {...register("telephone")}
       />
       {errors.telephone?.message && <p> * {errors.telephone?.message}</p>}
@@ -55,6 +60,8 @@ const SignupForm = () => {
         {...register("password")}
       />
       {errors.password?.message && <p> * {errors.password?.message}</p>}
+
+      <Link to="/">Already have an account? Login</Link>
 
       <button type="submit">SIGN IN</button>
     </form>

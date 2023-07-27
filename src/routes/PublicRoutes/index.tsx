@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../../hooks";
 
 const PublicRoutes = () => {
-  const token = localStorage.getItem("");
+  const { user } = useAuth();
 
-  return !token ? <Outlet /> : <Navigate to="/dashboard" />;
+  return !user ? <Outlet /> : <Navigate to="/dashboard" />;
 };
 
 export { PublicRoutes };

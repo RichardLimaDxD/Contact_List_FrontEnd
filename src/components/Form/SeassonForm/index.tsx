@@ -1,17 +1,51 @@
 import { useForm } from "react-hook-form";
+import { Iseasson } from "../../../interfaces/user.interfaces";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { seassonUserSchema } from "../../../schemas/user.schema";
+import { useAuth } from "../../../hooks";
+import { Link } from "react-router-dom";
+import styles from "./styles.module.scss";
 
 const SeassonForm = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Iseasson>({ resolver: zodResolver(seassonUserSchema) });
+
+  const { seasson } = useAuth();
+
+  const submit = (formData: Iseasson) => {
+    seasson(formData);
+  };
 
   return (
-    <form>
+    <form
+      className={styles.container__seassonForm}
+      onSubmit={handleSubmit(submit)}
+    >
+      <h2>WELCOME BACK</h2>
       <label htmlFor="emailSeasson">Email:</label>
-      <input type="text" placeholder="Your email..." />
+      <input
+        type="text"
+        id="emailSeasson"
+        placeholder="Your email..."
+        {...register("email")}
+      />
+      {errors.email?.message && <p> * {errors.email.message}</p>}
 
-      <label htmlFor=""></label>
-      <input type="text" />
+      <label htmlFor="passwordSeasson">Password:</label>
+      <input
+        type="text"
+        id="passwordSeasson"
+        placeholder="Your password"
+        {...register("password")}
+      />
+      {errors.password?.message && <p> * {errors.password.message}</p>}
 
-      <button>SIGN UP</button>
+      <Link to="/signup">Don't have an account ? sign up</Link>
+
+      <button type="submit">SIGN UP</button>
     </form>
   );
 };

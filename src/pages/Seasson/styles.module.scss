@@ -1,0 +1,41 @@
+.container__seassonMain {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.container__seassonMain > section > img {
+  display: none;
+}
+
+@media (min-width: 1023px) {
+  .container__seassonMain {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .container__seassonMain > section {
+    display: flex;
+  }
+
+  .container__seassonMain > section > img {
+    display: flex;
+    width: 150vw;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 1244px) {
+  .container__seassonMain > section > img {
+    width: 180vw;
+    height: 110vh;
+  }
+}
+
+@media (min-width: 1439px) {
+  .container__seassonMain > section > img {
+    width: 150vw;
+    height: 100vh;
+  }
+}

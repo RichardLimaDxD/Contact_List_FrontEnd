@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../../hooks";
 
 const ProtectedRoutes = () => {
-  const token = localStorage.getItem("");
+  const { user } = useAuth();
 
-  return token ? <Outlet /> : <Navigate to="/" />;
+  return user ? <Outlet /> : <Navigate to="/" />;
 };
 
 export { ProtectedRoutes };

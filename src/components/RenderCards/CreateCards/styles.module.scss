@@ -1,0 +1,24 @@
+@use "../../../sass/abstract/variables" as *;
+
+.container__createCard {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+  background-color: $color-black-grey;
+  color: $color-white;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+.container__createCard > div {
+  background: linear-gradient($color-pink, $color-purple);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}

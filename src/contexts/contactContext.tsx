@@ -1,24 +1,47 @@
 import { createContext, useEffect, useState } from "react";
 import { TdefaultProps } from "../interfaces/user.interfaces";
 import { api } from "../services/api";
-import { Icontacts } from "../interfaces/contacts.interfaces";
+import { Icontacts, IcontactsContext } from "../interfaces/contacts.interfaces";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-const ContactContext = createContext({});
+const ContactContext = createContext({} as IcontactsContext);
 
 const ContactProvider = ({ children }: TdefaultProps) => {
-  const [contact, setContact] = useState<[]>([]);
+  const [contact, setContact] = useState<Icontacts[]>([]);
 
-  const token = localStorage.getItem("@Token");
+  const [createModal, setCreateModal] = useState<boolean>(false);
+
+  // const [search, setSearch] = useState<string>("");
+
+  // const searchContact = contact.filter((contacts) =>
+  //   search === ""
+  //     ? contacts
+  //     : contacts.fullname.toLowerCase().includes(search.toLowerCase())
+  // );
+
+  const token = localStorage.getItem("@TOKEN");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadContacts = async () => {
+      if (!token) {
+        localStorage.removeItem("@TOKEN");
+        localStorage.removeItem("@serialUser");
+        navigate("/");
+        return;
+      }
+
       try {
-        const { data } = await api.get("/contacts", {
+        const response = await api.get("/contacts", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setContact(data);
+
+        setContact(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -37,9 +60,12 @@ const ContactProvider = ({ children }: TdefaultProps) => {
 
       setContact(data.id);
 
+      toast.success("New contact added!");
+
       await retrieveContacts();
     } catch (error) {
       console.log(error);
+      toast.error("Error!Please check your information");
     }
   };
 
@@ -51,13 +77,11 @@ const ContactProvider = ({ children }: TdefaultProps) => {
         },
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const findContact: any = contact.filter(
-        (contacts: Icontacts) => contacts.id !== id
-      );
+      await retrieveContacts();
 
-      setContact(findContact);
+      toast.success("Contact deleted!");
     } catch (error) {
+      toast.error("Error!Please check your information!");
       console.log(error);
     }
   };
@@ -73,12 +97,53 @@ const ContactProvider = ({ children }: TdefaultProps) => {
       setContact(response.data);
     } catch (error) {
       console.log(error);
+      toast.error("Error!Please check your information!");
+    }
+  };
+
+  const patchContact = async (formData: Icontacts, id: number) => {
+    try {
+      const response = await api.patch(`/contacts/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setContact(response.data);
+      await retrieveContacts();
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
-    <ContactContext.Provider value={{ contact, createContact, deleteContact }}>
+    <ContactContext.Provider
+      value={{
+        contact,
+        createContact,
+        deleteContact,
+        patchContact,
+        retrieveContacts,
+        createModal,
+        setCreateModal,
+        // setSearch,
+        // search,
+        // searchContact,
+      }}
+    >
       {children}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </ContactContext.Provider>
   );
 };

@@ -49,7 +49,7 @@ const UserProvider = ({ children }: TdefaultProps) => {
 
       navigate("/");
     } catch (error) {
-      toast.error("Please check your information and try again");
+      toast.error("User already exists.Please check your information");
     }
   };
 
@@ -85,7 +85,7 @@ const UserProvider = ({ children }: TdefaultProps) => {
 
       setUser(response.data.id);
     } catch (error) {
-      console.log(error);
+      toast.error("Error!");
     }
   };
 
@@ -126,6 +126,7 @@ const UserProvider = ({ children }: TdefaultProps) => {
     setUser(null);
     localStorage.removeItem("@TOKEN");
     localStorage.removeItem("@serialUser");
+    navigate("/");
   };
 
   return (

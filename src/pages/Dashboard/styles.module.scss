@@ -1,0 +1,10 @@
+@use "../../sass/abstract/variables" as *;
+
+.container__dashboardMain {
+  margin-top: 7rem;
+}
+
+.container__dashboardMain > section {
+  background: linear-gradient($color-pink, $color-purple);
+  margin: 0 1rem;
+}

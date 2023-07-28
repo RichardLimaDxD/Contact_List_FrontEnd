@@ -23,6 +23,7 @@ interface IuserContext {
   seasson: (formdata: Iseasson) => Promise<void>;
   userLogout: () => void;
   deleteUser: () => Promise<void>;
+  patchProfile: (formData: Iusers) => Promise<void>;
 }
 
 export type { TdefaultProps, Iusers, Iseasson, IuserContext };

@@ -1,12 +1,12 @@
-import { UserService } from "./contexts/userContext";
+import { UserProvider } from "./contexts/userContext";
 import { RouteMain } from "./routes/routeMain";
 
 const App = () => {
   return (
     <>
-      <UserService>
+      <UserProvider>
         <RouteMain />
-      </UserService>
+      </UserProvider>
     </>
   );
 };

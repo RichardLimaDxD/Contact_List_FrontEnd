@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useEffect, useState } from "react";
 import {
   TdefaultProps,
@@ -29,14 +30,13 @@ const UserProvider = ({ children }: TdefaultProps) => {
 
           setUser(response.data.id);
         } catch (error) {
-          console.log(error);
+          toast.error("Please check your information!");
         }
       } else {
         navigate("/");
       }
     };
     loadingUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const signup = async (formData: Iusers) => {
@@ -118,7 +118,7 @@ const UserProvider = ({ children }: TdefaultProps) => {
       });
       setUser(response.data);
     } catch (error) {
-      console.log(error);
+      toast.error("Please check your information and try again");
     }
   };
 

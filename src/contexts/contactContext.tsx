@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useEffect, useState } from "react";
 import { TdefaultProps } from "../interfaces/user.interfaces";
 import { api } from "../services/api";
@@ -15,19 +16,11 @@ const ContactProvider = ({ children }: TdefaultProps) => {
 
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
+  const [updateModal, setUpdateModal] = useState<boolean>(false);
+
   const [selectedContactId, setSelectedContactId] = useState<number | null>(
     null
   );
-
-  const [search, setSearch] = useState<string>("");
-
-  /*
-  const searchContact = contact.filter((contacts) =>
-    search === ""
-      ? contacts
-      : contacts.fullname.toLowerCase().includes(search.toLowerCase())
-  );
-  */
 
   const token = localStorage.getItem("@TOKEN");
 
@@ -51,11 +44,10 @@ const ContactProvider = ({ children }: TdefaultProps) => {
 
         setContact(response.data);
       } catch (error) {
-        console.log(error);
+        toast.error("Error!Please check your information");
       }
     };
     loadContacts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const createContact = async (formData: Icontacts) => {
@@ -72,7 +64,6 @@ const ContactProvider = ({ children }: TdefaultProps) => {
 
       await retrieveContacts();
     } catch (error) {
-      console.log(error);
       toast.error("Error!Please check your information");
     }
   };
@@ -94,8 +85,6 @@ const ContactProvider = ({ children }: TdefaultProps) => {
       toast.success("Contact deleted!");
     } catch (error) {
       toast.error("Error!Please check your information!");
-      console.error(error);
-      console.log(id);
     }
   };
 
@@ -109,7 +98,6 @@ const ContactProvider = ({ children }: TdefaultProps) => {
 
       setContact(response.data);
     } catch (error) {
-      console.log(error);
       toast.error("Error!Please check your information!");
     }
   };
@@ -122,10 +110,15 @@ const ContactProvider = ({ children }: TdefaultProps) => {
         },
       });
 
-      setContact(response.data);
-      await retrieveContacts();
+      setContact((prevContacts) => {
+        const updatedContacts = prevContacts.map((contact) =>
+          contact.id === id ? { ...contact, ...response.data } : contact
+        );
+
+        return updatedContacts;
+      });
     } catch (error) {
-      console.log(error);
+      toast.error("Error!Please check your information!");
     }
   };
 
@@ -139,12 +132,12 @@ const ContactProvider = ({ children }: TdefaultProps) => {
         retrieveContacts,
         createModal,
         setCreateModal,
-        setSearch,
-        search,
         deleteModal,
         setDeleteModal,
         selectedContactId,
         setSelectedContactId,
+        updateModal,
+        setUpdateModal,
       }}
     >
       {children}

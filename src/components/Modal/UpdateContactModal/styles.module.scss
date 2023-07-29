@@ -1,0 +1,54 @@
+@use "../../../sass/abstract/variables" as *;
+
+.container__updateModal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  border: 1px solid $color-black-grey;
+
+  width: 80%;
+
+  border-radius: 4px;
+
+  background: $color-black-grey;
+  color: $color-white;
+
+  position: fixed;
+  bottom: -100%;
+
+  left: 50%;
+  transform: translate(-50%, -15%);
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.container__updateModal > div {
+  display: flex;
+  justify-content: end;
+}
+
+.container__updateModal > div > button {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $color-white;
+  background-color: transparent;
+
+  border: none;
+}
+
+.container__updateModal > h2 {
+  text-align: center;
+
+  font-size: 1.2rem;
+
+  font-family: "Holtwood One SC", serif;
+}

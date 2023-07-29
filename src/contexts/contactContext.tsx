@@ -13,13 +13,21 @@ const ContactProvider = ({ children }: TdefaultProps) => {
 
   const [createModal, setCreateModal] = useState<boolean>(false);
 
-  // const [search, setSearch] = useState<string>("");
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
-  // const searchContact = contact.filter((contacts) =>
-  //   search === ""
-  //     ? contacts
-  //     : contacts.fullname.toLowerCase().includes(search.toLowerCase())
-  // );
+  const [selectedContactId, setSelectedContactId] = useState<number | null>(
+    null
+  );
+
+  const [search, setSearch] = useState<string>("");
+
+  /*
+  const searchContact = contact.filter((contacts) =>
+    search === ""
+      ? contacts
+      : contacts.fullname.toLowerCase().includes(search.toLowerCase())
+  );
+  */
 
   const token = localStorage.getItem("@TOKEN");
 
@@ -71,18 +79,23 @@ const ContactProvider = ({ children }: TdefaultProps) => {
 
   const deleteContact = async (id: number) => {
     try {
-      await api.delete(`clients/${id}`, {
+      await api.delete(`contacts/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
+      const data = contact.filter((contacts) => contacts.id !== id);
+
+      setContact(data);
 
       await retrieveContacts();
 
       toast.success("Contact deleted!");
     } catch (error) {
       toast.error("Error!Please check your information!");
-      console.log(error);
+      console.error(error);
+      console.log(id);
     }
   };
 
@@ -126,9 +139,12 @@ const ContactProvider = ({ children }: TdefaultProps) => {
         retrieveContacts,
         createModal,
         setCreateModal,
-        // setSearch,
-        // search,
-        // searchContact,
+        setSearch,
+        search,
+        deleteModal,
+        setDeleteModal,
+        selectedContactId,
+        setSelectedContactId,
       }}
     >
       {children}

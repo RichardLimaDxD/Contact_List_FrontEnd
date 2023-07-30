@@ -1,6 +1,6 @@
 @use "../../../sass/abstract/variables" as *;
 
-.container__updateModal {
+.container__profileModal {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -17,7 +17,7 @@
   bottom: -100%;
 
   left: 50%;
-  transform: translate(-50%, -15%);
+  transform: translate(-50%, -2%);
   animation: slideUp 0.5s ease-in-out forwards;
 }
 
@@ -30,12 +30,12 @@
   }
 }
 
-.container__updateModal > div {
+.container__profileModal > div {
   display: flex;
   justify-content: end;
 }
 
-.container__updateModal > div > button {
+.container__profileModal > div > button {
   font-size: 1.5rem;
   font-weight: 700;
   color: $color-white;
@@ -44,7 +44,7 @@
   border: none;
 }
 
-.container__updateModal > h2 {
+.container__profileModal > h2 {
   text-align: center;
 
   font-size: 1.2rem;
@@ -53,26 +53,26 @@
 }
 
 @media (min-width: 767px) {
-  .container__updateModal {
-    transform: translate(-50%, -29%);
+  .container__profileModal {
+    transform: translate(-50%, -2%);
     width: 57%;
   }
 }
 
 @media (min-width: 1023px) {
-  .container__updateModal {
-    transform: translate(-50%, -28%);
+  .container__profileModal {
+    transform: translate(-50%, -2%);
     width: 49%;
   }
 
-  .container__updateModal > div > button {
+  .container__profileModal > div > button {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width: 1439px) {
-  .container__updateModal {
-    transform: translate(-65%, -15%);
+  .container__profileModal {
+    transform: translate(-65%, -2%);
     width: 40%;
   }
 }

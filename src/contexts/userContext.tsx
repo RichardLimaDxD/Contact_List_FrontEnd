@@ -16,6 +16,8 @@ const UserContext = createContext({} as IuserContext);
 const UserProvider = ({ children }: TdefaultProps) => {
   const [user, setUser] = useState<Iusers | null>(null);
 
+  const [userModal, setUserModal] = useState<boolean>(false);
+
   const navigate: NavigateFunction = useNavigate();
 
   const token = localStorage.getItem("@TOKEN");
@@ -103,6 +105,8 @@ const UserProvider = ({ children }: TdefaultProps) => {
 
       toast.success("User Deleted!");
     } catch (error) {
+      console.log(error);
+
       toast.error("Please check your information and try again");
     }
   };
@@ -111,12 +115,15 @@ const UserProvider = ({ children }: TdefaultProps) => {
     const id = localStorage.getItem("@serialUser");
 
     try {
-      const response = await api.patch(`/contact/${id}`, formData, {
+      const response = await api.patch(`/users/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       setUser(response.data);
+
+      toast.success("Profile Update!");
     } catch (error) {
       toast.error("Please check your information and try again");
     }
@@ -131,7 +138,16 @@ const UserProvider = ({ children }: TdefaultProps) => {
 
   return (
     <UserContext.Provider
-      value={{ signup, user, seasson, userLogout, deleteUser, patchProfile }}
+      value={{
+        signup,
+        user,
+        seasson,
+        userLogout,
+        deleteUser,
+        patchProfile,
+        userModal,
+        setUserModal,
+      }}
     >
       {children}
       <ToastContainer

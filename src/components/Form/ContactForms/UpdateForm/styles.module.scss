@@ -48,3 +48,23 @@
   color: $color-white;
   background: linear-gradient($color-purple, $color-pink);
 }
+
+@media (min-width: 1023px) {
+  .container__updateFormModal > label {
+    font-size: 1.5rem;
+  }
+
+  .container__updateFormModal > input {
+    font-size: 1.4rem;
+    height: 50px;
+  }
+
+  .container__updateFormModal > p {
+    font-size: 1.3rem;
+  }
+
+  .container__updateFormModal > button {
+    height: 45px;
+    font-size: 1.5rem;
+  }
+}

@@ -60,3 +60,34 @@
 .container__navMobile > svg {
   font-size: 2rem;
 }
+
+@media (min-width: 424px) {
+  .container__navMobile > ul {
+    width: 20%;
+  }
+}
+
+@media (min-width: 767px) {
+  .container__navMobile > ul {
+    width: 11%;
+  }
+}
+
+@media (min-width: 1023px) {
+  .container__headerDashboard > div {
+    padding: 0 4rem;
+  }
+
+  .container__headerDashboard > div > button {
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .container__navMobile > svg {
+    font-size: 2.5rem;
+  }
+
+  .container__navMobile > ul > li > svg {
+    font-size: 2.5rem;
+  }
+}

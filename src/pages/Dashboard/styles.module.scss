@@ -9,3 +9,9 @@
   margin: 0 1rem;
   border-radius: 16px;
 }
+
+@media (min-width: 1023px) {
+  .container__dashboardMain {
+    padding: 0 3rem;
+  }
+}

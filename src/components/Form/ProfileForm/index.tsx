@@ -1,30 +1,23 @@
 import { useForm } from "react-hook-form";
 import { Iusers } from "../../../interfaces/user.interfaces";
 import { useAuth } from "../../../hooks";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createUserSchema } from "../../../schemas/user.schema";
-import { Link } from "react-router-dom";
+
 import styles from "./styles.module.scss";
 
-const SignupForm = () => {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm<Iusers>({ resolver: zodResolver(createUserSchema) });
+const ProfileForm = () => {
+  const { handleSubmit, register } = useForm<Iusers>();
 
-  const { signup } = useAuth();
+  const { patchProfile } = useAuth();
 
   const submit = (formData: Iusers) => {
-    signup(formData);
+    patchProfile(formData);
   };
 
   return (
     <form
-      className={styles.container__signupForm}
+      className={styles.container__profileForm}
       onSubmit={handleSubmit(submit)}
     >
-      <h2>CREATE YOUR ACCOUNT</h2>
       <label htmlFor="fullname">Full name:</label>
       <input
         type="text"
@@ -32,7 +25,6 @@ const SignupForm = () => {
         placeholder="Your full name..."
         {...register("fullname")}
       />
-      {errors.fullname?.message && <p> * {errors.fullname.message}</p>}
 
       <label htmlFor="email">Email:</label>
       <input
@@ -41,7 +33,6 @@ const SignupForm = () => {
         placeholder="Your Email..."
         {...register("email")}
       />
-      {errors.email?.message && <p> * {errors.email.message}</p>}
 
       <label htmlFor="telephone">Telephone:</label>
       <input
@@ -50,7 +41,6 @@ const SignupForm = () => {
         placeholder="Your telephone..."
         {...register("telephone")}
       />
-      {errors.telephone?.message && <p> * {errors.telephone?.message}</p>}
 
       <label htmlFor="password">Password:</label>
       <input
@@ -59,13 +49,10 @@ const SignupForm = () => {
         placeholder="Create password..."
         {...register("password")}
       />
-      {errors.password?.message && <p> * {errors.password?.message}</p>}
 
-      <Link to="/">Already have an account? Login</Link>
-
-      <button type="submit">SIGN IN</button>
+      <button type="submit">MODIFY</button>
     </form>
   );
 };
 
-export { SignupForm };
+export { ProfileForm };

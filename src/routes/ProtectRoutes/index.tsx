@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoutes = () => {
-  const token = localStorage.getItem("");
+  const user = localStorage.getItem("@TOKEN");
 
-  return token ? <Outlet /> : <Navigate to="/" />;
+  return user ? <Outlet /> : <Navigate to="/" />;
 };
 
 export { ProtectedRoutes };

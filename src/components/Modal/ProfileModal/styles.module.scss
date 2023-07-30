@@ -1,0 +1,78 @@
+@use "../../../sass/abstract/variables" as *;
+
+.container__profileModal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 80%;
+
+  border-radius: 4px;
+  border: 1px solid $color-white;
+
+  background: $color-black-grey;
+  color: $color-white;
+
+  position: fixed;
+  bottom: -100%;
+
+  left: 50%;
+  transform: translate(-50%, -2%);
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.container__profileModal > div {
+  display: flex;
+  justify-content: end;
+}
+
+.container__profileModal > div > button {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $color-white;
+  background-color: transparent;
+
+  border: none;
+}
+
+.container__profileModal > h2 {
+  text-align: center;
+
+  font-size: 1.2rem;
+
+  font-family: "Holtwood One SC", serif;
+}
+
+@media (min-width: 767px) {
+  .container__profileModal {
+    transform: translate(-50%, -2%);
+    width: 57%;
+  }
+}
+
+@media (min-width: 1023px) {
+  .container__profileModal {
+    transform: translate(-50%, -2%);
+    width: 49%;
+  }
+
+  .container__profileModal > div > button {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1439px) {
+  .container__profileModal {
+    transform: translate(-65%, -2%);
+    width: 40%;
+  }
+}

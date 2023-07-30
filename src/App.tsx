@@ -1,9 +1,15 @@
+import { ContactProvider } from "./contexts/contactContext";
+import { UserProvider } from "./contexts/userContext";
 import { RouteMain } from "./routes/routeMain";
 
 const App = () => {
   return (
     <>
-      <RouteMain />
+      <UserProvider>
+        <ContactProvider>
+          <RouteMain />
+        </ContactProvider>
+      </UserProvider>
     </>
   );
 };

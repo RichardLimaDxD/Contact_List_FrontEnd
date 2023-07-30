@@ -1,0 +1,88 @@
+@use "../../../sass/abstract/variables" as *;
+
+.container__deleteModal {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+
+  border: 1px solid $color-white;
+  border-radius: 8px;
+
+  background: $color-black-grey;
+
+  width: 60%;
+
+  position: fixed;
+  bottom: -100%;
+
+  left: 50%;
+  transform: translate(-50%, -250%);
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.container__deleteModal > div {
+  display: flex;
+  justify-content: end;
+}
+
+.container__deleteModal > div > button {
+  border: none;
+  background: transparent;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  color: $color-white;
+}
+
+.container__deleteModal > button {
+  height: 45px;
+  border: none;
+
+  font-size: 1rem;
+
+  border-radius: 4px;
+
+  color: $color-white;
+  background: linear-gradient($color-purple, $color-pink);
+}
+
+@media (min-width: 767px) {
+  .container__deleteModal {
+    width: 37%;
+  }
+
+  .container__deleteModal > div > button {
+    font-size: 1.5rem;
+  }
+
+  .container__deleteModal > button {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1023px) {
+  .container__deleteModal > button {
+    height: 65px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1439px) {
+  .container__deleteModal {
+    transform: translate(-65%, -220%);
+  }
+
+  .container__deleteModal > div > button {
+    font-size: 3rem;
+  }
+}

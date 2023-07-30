@@ -1,0 +1,97 @@
+@use "../../../sass/abstract/variables" as *;
+
+.container__createCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: $color-black-grey;
+  color: $color-white;
+  padding: 0.8rem;
+  border-radius: 12px;
+}
+
+.container__divName {
+  background: linear-gradient($color-pink, $color-purple);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.container__divButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 163px;
+  font-size: 0rem;
+}
+
+.container__divButtons > button {
+  height: 35px;
+  width: 40px;
+  border: none;
+  background: transparent;
+}
+
+.container__divButtons > button > svg {
+  font-size: 1.5rem;
+  color: $color-white;
+}
+
+@media (min-width: 767px) {
+  .container__createCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: $color-black-grey;
+    color: $color-white;
+    padding: 0.8rem;
+    border-radius: 12px;
+    width: 45%;
+  }
+}
+
+@media (min-width: 1023px) {
+  .container__createCard {
+    font-size: 1.5rem;
+
+    gap: 2rem;
+
+    width: 46%;
+  }
+
+  .container__divName {
+    height: 60px;
+    width: 60px;
+
+    font-size: 1.5rem;
+  }
+
+  .container__divButtons {
+    width: 234px;
+  }
+
+  .container__divButtons > button {
+    height: 47px;
+    width: 51px;
+  }
+
+  .container__divButtons > button > svg {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1439px) {
+  .container__createCard {
+    font-size: 1.8rem;
+
+    width: 47%;
+  }
+}

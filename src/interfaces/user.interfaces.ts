@@ -24,6 +24,8 @@ interface IuserContext {
   userLogout: () => void;
   deleteUser: () => Promise<void>;
   patchProfile: (formData: Iusers) => Promise<void>;
+  userModal: boolean;
+  setUserModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export type { TdefaultProps, Iusers, Iseasson, IuserContext };

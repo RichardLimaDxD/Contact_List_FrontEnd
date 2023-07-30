@@ -1,6 +1,6 @@
-@use "../../../../sass/abstract/variables" as *;
+@use "../../../sass/abstract/variables" as *;
 
-.container__createFormModal {
+.container__profileForm {
   display: flex;
   flex-direction: column;
 
@@ -8,13 +8,13 @@
   gap: 0.5rem;
 }
 
-.container__createFormModal > label {
+.container__profileForm > label {
   font-size: 1rem;
   margin-top: 1rem;
   font-family: "Inria Sans", sans-serif;
 }
 
-.container__createFormModal > input {
+.container__profileForm > input {
   height: 30px;
 
   background: linear-gradient($color-purple, $color-black-grey);
@@ -25,16 +25,16 @@
   font-family: "Inria Sans", sans-serif;
 }
 
-.container__createFormModal > p {
+.container__profileForm > p {
   color: $color-red;
   font-family: "Inria Sans", sans-serif;
 }
 
-.container__createFormModal > input::placeholder {
+.container__profileForm > input::placeholder {
   color: $color-white;
 }
 
-.container__createFormModal > button {
+.container__profileForm > button {
   margin: 1rem 0;
 
   height: 35px;
@@ -50,20 +50,20 @@
 }
 
 @media (min-width: 1023px) {
-  .container__createFormModal > label {
+  .container__profileForm > label {
     font-size: 1.5rem;
   }
 
-  .container__createFormModal > input {
+  .container__profileForm > input {
     font-size: 1.4rem;
     height: 50px;
   }
 
-  .container__createFormModal > p {
+  .container__profileForm > p {
     font-size: 1.3rem;
   }
 
-  .container__createFormModal > button {
+  .container__profileForm > button {
     height: 45px;
     font-size: 1.5rem;
   }

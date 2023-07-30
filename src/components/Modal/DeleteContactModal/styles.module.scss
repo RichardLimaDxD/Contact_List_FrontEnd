@@ -55,3 +55,34 @@
   color: $color-white;
   background: linear-gradient($color-purple, $color-pink);
 }
+
+@media (min-width: 767px) {
+  .container__deleteModal {
+    width: 37%;
+  }
+
+  .container__deleteModal > div > button {
+    font-size: 1.5rem;
+  }
+
+  .container__deleteModal > button {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1023px) {
+  .container__deleteModal > button {
+    height: 65px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1439px) {
+  .container__deleteModal {
+    transform: translate(-65%, -220%);
+  }
+
+  .container__deleteModal > div > button {
+    font-size: 3rem;
+  }
+}

@@ -18,8 +18,6 @@ const UpdateForm = () => {
 
   const idContact: number = selectedContactId;
 
-  console.log(idContact);
-
   const submit = (formData: Icontacts) => {
     patchContact(formData, idContact);
   };

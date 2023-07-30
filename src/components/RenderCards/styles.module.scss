@@ -1,3 +1,4 @@
+@use "../../sass/abstract/variables" as *;
 .container__renderCards {
   display: flex;
   flex-direction: column;
@@ -10,4 +11,45 @@
   margin-top: 1rem;
 
   padding: 1rem 0.5rem;
+}
+
+@media (min-width: 767px) {
+  .container__renderCards {
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    height: 60vh;
+
+    overflow-y: auto;
+
+    margin-top: 1rem;
+
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (min-width: 1023px) {
+  .container__renderCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    height: 70vh;
+
+    overflow-y: auto;
+
+    margin-top: 1rem;
+
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (min-width: 1439px) {
+  .container__renderCards {
+    padding: 1rem 1.5rem;
+  }
 }

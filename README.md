@@ -1,27 +1,14 @@
-# React + TypeScript + Vite
+# Contacts FrontEnd
+Aplicação construida com o intuito de fazer uma lista de contatos onde o usuário pode gerenciar seus contatos através de um CRUD.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Como rodar o projeto..
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para iniciar certifique de ter o node.js instalado em sua máquina,ter o npm instalado e clonar o repositório.E para testar todas as funcionalidades do projeto, certifique de já ter rodado o backEnd dessa aplicação em ambiente local, você pode encontrar ele nesse link:<br> [https://github.com/RichardLimaDxD/Contact_List_Api](https://github.com/RichardLimaDxD/Contact_List_Api)
 
-## Expanding the ESLint configuration
+1 - Utilize o comando `npm install` <br>
+com ele vc vai baixar todas as dependencias do projeto.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2 - Utilize o comando `npm run dev`
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+caso não tenha aberto o link do projeto utilize a porta [http://localhost:5173/](http://localhost:5173/) do seu navegador;
